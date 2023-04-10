@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap');
+
+:root {
+    --cursive: 'Kalam', cursive; 
+}
+
+html {
+    font-size: 62.5%
+}
+
+body {
+    background-color: #eee;
+    font-size: 1.6rem;
+}

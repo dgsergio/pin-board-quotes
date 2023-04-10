@@ -1,0 +1,35 @@
+.wrapper {
+    transform: rotate(-3deg);
+    margin-top: 2rem;
+  }
+  
+  .wrapper img {
+    position: fixed;
+    top: -1.5rem;
+    left: 9.5rem;
+    width: 3rem;
+  }
+  
+  .note {
+    background-color: antiquewhite;
+    width: 21rem;
+    height: 20rem;
+    padding: 2rem;
+    font-family: var(--cursive);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0.8rem 0.8rem 0.8rem 0 rgba(0, 0, 0, 0.35);
+  }
+  
+  .note p {
+    text-align: left;
+    line-height: 3rem;
+    overflow: hidden;
+  }
+  
+  .footer {
+    text-align: right;
+    font-weight: bold;
+    color: #222;
+  }
