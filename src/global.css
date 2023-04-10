@@ -5,10 +5,16 @@
 }
 
 html {
-    font-size: 62.5%
+    font-size: 62.5%;
 }
 
 body {
     background-color: #eee;
     font-size: 1.6rem;
+    margin: 0;
+}
+
+button {
+    border: none;
+    cursor: pointer;
 }

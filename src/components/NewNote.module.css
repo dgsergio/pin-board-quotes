@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.container h2 {
+  text-align: center;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+  width: 100;
+  align-items: center;
+}
+.container textarea {
+  background-color: transparent;
+  border: 0.2rem solid rgba(0, 0, 0, 0.089);
+  font-family: var(--cursive);
+  line-height: 2.5rem;
+  font-size: 2.5rem;
+  width: 45rem;
+  height: 26rem;
+}
+
+.container textarea::placeholder {
+    padding: 1rem;
+}
+
+.btns {
+  display: flex;
+  margin-top: 4rem;
+  width: 100%;
+  justify-content: right;
+  column-gap: 2rem;
+}
+.btns button {
+  font-family: var(--cursive);
+  font-size: 2rem;
+  padding: 0.5rem 1.5rem 0.3rem;
+  border-radius: 1rem;
+  background-color: #0084ff;
+  color: white;
+  box-shadow: 0.8rem 0.8rem 0.8rem 0 rgba(0, 0, 0, 0.35);
+  transition: all 200ms ease-out;
+}
+
+.btns button:hover {
+  background-color: #5bb0ff;
+  transform: scale(110%);
+}

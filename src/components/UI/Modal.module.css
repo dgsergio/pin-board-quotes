@@ -1,0 +1,41 @@
+.backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: fadeIn 400ms linear;
+}
+.overlay {
+  position: fixed;
+  z-index: 40;
+  background-color: #fcffcc;
+  width: 50rem;
+  height: 36rem;
+  left: calc(50% - 25rem);
+  top: 10vh;
+  border-radius: 0.5rem;
+  animation: popIn 300ms linear;
+  box-shadow: 0.8rem 0.8rem 0.8rem 0 rgba(0, 0, 0, 0.35);
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0%);
+    }
+    70% {
+        transform: scale(110%);
+    }
+    100% {
+        transform: scale(100%);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
