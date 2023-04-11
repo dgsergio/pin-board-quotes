@@ -48,3 +48,13 @@
   background-color: #5bb0ff;
   transform: scale(110%);
 }
+
+.btns button:first-child {
+ background-color: transparent;
+ border: 0.2rem solid #5bb0ff; 
+}
+
+.btns button:first-child:hover {
+ background-color: #0084ff;
+ border: 0.2rem solid #0084ff; 
+}

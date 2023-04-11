@@ -16,7 +16,7 @@ const NewNote = () => {
         <form>
           <textarea placeholder="Type your phrease here..."/>
           <div className={classes.btns}>
-            <button type="text" onClick={cancelHandler}>Cancel</button>
+            <button type="cancel" onClick={cancelHandler}>Cancel</button>
             <button type="submit">Send Note</button>
           </div>
         </form>
