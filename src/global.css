@@ -1,25 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap');
 
 :root {
-    --cursive: 'Kalam', cursive; 
-    --yellow-note: #fcffcc;
-    --pink-note: #ffa8a8;
-    --blue-note: #ccf7ff;
-    --green-note: #b7ffb7;
-    
+  --cursive: 'Kalam', cursive;
+  --yellow-note: #fcffcc;
+  --pink-note: #ffa8a8;
+  --blue-note: #ccf7ff;
+  --green-note: #b7ffb7;
+  --white-note: #fff;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    background-color: #eee;
-    font-size: 1.6rem;
-    margin: 0;
+  background-color: #eee;
+  font-size: 1.6rem;
+  margin: 0;
 }
 
 button {
-    border: none;
-    cursor: pointer;
+  border: none;
+  cursor: pointer;
 }

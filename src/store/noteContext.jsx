@@ -20,27 +20,22 @@ const notesReducer = (state, action) => {
       };
 
     case 'SET_NOTE':
-      let newColor = '';
       if (action.payload.id) {
         const newNotes = state.notes.map((e) =>
           e.id === action.payload.id
             ? {
                 ...e,
                 quote: action.payload.quote,
+                color: action.payload.color,
                 author: action.payload.author.trim()
                   ? action.payload.author
                   : 'anonymous',
               }
             : e
         );
-        return { notes: newNotes, showNewNote: false};
+        return { notes: newNotes, showNewNote: false };
       }
 
-      const nro = randomNro(5);
-      if (nro === 1) newColor = 'yellow';
-      if (nro === 2) newColor = 'blue';
-      if (nro === 3) newColor = 'green';
-      if (nro === 4) newColor = 'pink';
       return {
         notes: [
           {
@@ -49,7 +44,7 @@ const notesReducer = (state, action) => {
             author: action.payload.author.trim()
               ? action.payload.author
               : 'anonymous',
-            color: newColor,
+            color: action.payload.color,
           },
           ...state.notes,
         ],
@@ -58,12 +53,11 @@ const notesReducer = (state, action) => {
 
     case 'EDIT_NOTE':
       return { ...state, showNewNote: !state.showNewNote };
-      
-      case 'DELETE_NOTE':
-        const filteredNotes = state.notes.filter(e=>e.id!==action.payload) 
-        console.log(filteredNotes)
+
+    case 'DELETE_NOTE':
+      const filteredNotes = state.notes.filter((e) => e.id !== action.payload);
       return { ...state, notes: filteredNotes };
-      
+
     default:
       return state;
   }

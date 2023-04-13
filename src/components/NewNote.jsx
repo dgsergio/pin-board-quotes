@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Modal from './UI/Modal';
 import classes from './NewNote.module.css';
 import NoteContext from '../store/noteContext';
@@ -9,6 +9,7 @@ const NewNote = () => {
     (e) => e.id === notesState.idSelected
   );
   const [error, setError] = useState('');
+  const [colorSelected, setColorSelected] = useState('white');
   const textAreaRef = useRef();
   const inputRef = useRef();
 
@@ -22,41 +23,69 @@ const NewNote = () => {
       }, 3000);
       return;
     }
+
     notesDispatch({
       type: 'SET_NOTE',
       payload: {
         quote: textAreaRef.current.value,
         author: inputRef.current.value,
+        color: colorSelected === 'white' ? '' : colorSelected,
         id: notesState.idSelected,
       },
     });
   };
 
-  let containerStyles = classes.container;
-  if (noteSelected) {
-    containerStyles = `${classes.container} ${classes[noteSelected.color]}`;
-  }
+  useEffect(() => {
+    if (noteSelected) setColorSelected(noteSelected.color);
+  }, []);
 
   return (
     <Modal>
-      <div className={containerStyles}>
+      <div
+        className={classes.container}
+        style={{ background: `var(--${colorSelected?colorSelected:'white'}-note` }}
+      >
         <h2>Quote</h2>
         <form onSubmit={submitHandler}>
           {error && <div className={classes.message}>{error}</div>}
           <textarea
             defaultValue={noteSelected ? noteSelected.quote : ''}
             ref={textAreaRef}
-            placeholder="Type your phrease here..."
+            placeholder="Type your phrase here..."
           />
           <div className={classes.author}>
-            <label htmlFor="author">Author: </label>
-            <input
-              id="author"
-              type="text"
-              ref={inputRef}
-              placeholder="Leave it blank @anonymous"
-              defaultValue={noteSelected ? noteSelected.author : ''}
-            />
+            <div>
+              <label htmlFor="author">Author: </label>
+              <input
+                id="author"
+                type="text"
+                ref={inputRef}
+                placeholder="Leave it blank @anonymous"
+                defaultValue={noteSelected ? noteSelected.author : ''}
+              />
+            </div>
+            <div className={classes['squares-color']}>
+              <div
+                onClick={() => setColorSelected('pink')}
+                className={classes.pink + ' ' + classes.square}
+              />
+              <div
+                onClick={() => setColorSelected('yellow')}
+                className={classes.yellow + ' ' + classes.square}
+              />
+              <div
+                onClick={() => setColorSelected('green')}
+                className={classes.green + ' ' + classes.square}
+              />
+              <div
+                onClick={() => setColorSelected('blue')}
+                className={classes.blue + ' ' + classes.square}
+              />
+              <div
+                onClick={() => setColorSelected('white')}
+                className={classes.white + ' ' + classes.square}
+              />
+            </div>
           </div>
           <div className={classes.btns}>
             <button type="button" onClick={cancelHandler}>

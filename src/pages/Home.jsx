@@ -15,6 +15,7 @@ const HomePage = () => {
 
   return (
     <>
+    <div className={classes.phantom} onClick={addBtnHandler}  />
       {showNewNote && <NewNote />}
       <div className={classes.board}>
         {notes.map((e) => (

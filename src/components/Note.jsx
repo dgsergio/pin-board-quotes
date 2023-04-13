@@ -7,9 +7,11 @@ import NoteContext from '../store/noteContext';
 const Note = ({ note }) => {
   const { notesDispatch } = useContext(NoteContext);
 
-  const editHandler = () => notesDispatch({ type: 'TOGGLE_SET_NOTE', payload: note.id });
+  const editHandler = () =>
+    notesDispatch({ type: 'TOGGLE_SET_NOTE', payload: note.id });
 
-  const deleteHandler = () => notesDispatch({ type: 'DELETE_NOTE', payload: note.id });
+  const deleteHandler = () =>
+    notesDispatch({ type: 'DELETE_NOTE', payload: note.id });
 
   return (
     <div className={classes.wrapper}>
