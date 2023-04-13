@@ -2,6 +2,11 @@
 
 :root {
     --cursive: 'Kalam', cursive; 
+    --yellow-note: #fcffcc;
+    --pink-note: #ffa8a8;
+    --blue-note: #ccf7ff;
+    --green-note: #b7ffb7;
+    
 }
 
 html {

@@ -1,7 +1,27 @@
 .container {
   display: flex;
   flex-direction: column;
+  border-radius: 0.5rem;
+  box-shadow: 0.8rem 0.8rem 0.8rem 0 rgba(0, 0, 0, 0.35);
+  background-color: #eee;
 }
+
+.yellow {
+  background-color: var(--yellow-note);
+}
+
+.pink {
+  background-color: var(--pink-note);
+}
+
+.blue {
+  background-color: var(--blue-note);
+}
+
+.green {
+  background-color: var(--green-note);
+}
+
 .container h2 {
   text-align: center;
 }
@@ -17,13 +37,20 @@
   border: 0.2rem solid rgba(0, 0, 0, 0.089);
   font-family: var(--cursive);
   line-height: 2.5rem;
-  font-size: 2.5rem;
-  width: 45rem;
+  font-size: 2rem;
+  width: 25rem;
   height: 23rem;
 }
 
+@media (min-width: 550px) {
+  .container textarea {
+    font-size: 2.5rem;
+    width: 45rem;
+  }
+}
+
 .container textarea::placeholder {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .author {
@@ -44,7 +71,8 @@
 
 .btns {
   display: flex;
-  margin-top: 4rem;
+  margin: 2rem;
+  padding-right: 4rem;
   width: 100%;
   justify-content: right;
   column-gap: 2rem;
@@ -56,23 +84,25 @@
   border-radius: 1rem;
   background-color: #0084ff;
   color: white;
-  box-shadow: 0.8rem 0.8rem 0.8rem 0 rgba(0, 0, 0, 0.35);
+  box-shadow: 0.4rem 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.15);
   transition: all 200ms ease-out;
 }
 
 .btns button:hover {
   background-color: #5bb0ff;
-  transform: scale(110%);
+  transform: scale(105%);
 }
 
 .btns button:first-child {
- background-color: transparent;
- border: 0.2rem solid #5bb0ff; 
+  background-color: transparent;
+  border: 0.2rem solid #0084ff;
+  color: #0084ff;
 }
 
 .btns button:first-child:hover {
-  background-color: #0084ff;
-  border: 0.2rem solid #0084ff; 
+  border: 0.2rem solid #5bb0ff;
+  background-color: #5bb0ff;
+  color: white;
 }
 
 .message {
@@ -90,11 +120,16 @@
 }
 
 @keyframes zoomIn {
-  from { transform: scale(0);}
-  to { transform: scale(100%);}
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(100%);
+  }
 }
 
-button:disabled, button:disabled:hover{
+button:disabled,
+button:disabled:hover {
   cursor: no-drop;
   background-color: rgba(105, 105, 105, 0.5);
   color: #949494;

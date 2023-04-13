@@ -10,7 +10,7 @@ const HomePage = () => {
   const { notes, showNewNote } = notesState;
 
   const addBtnHandler = () => {
-    notesDispatch({ type: 'TOGGLE_NEW_NOTE' });
+    notesDispatch({ type: 'TOGGLE_SET_NOTE' });
   };
 
   return (

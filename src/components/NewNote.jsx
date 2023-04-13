@@ -4,11 +4,15 @@ import classes from './NewNote.module.css';
 import NoteContext from '../store/noteContext';
 
 const NewNote = () => {
+  const { notesDispatch, notesState } = useContext(NoteContext);
+  const noteSelected = notesState.notes.find(
+    (e) => e.id === notesState.idSelected
+  );
   const [error, setError] = useState('');
-  const { notesDispatch } = useContext(NoteContext);
   const textAreaRef = useRef();
   const inputRef = useRef();
-  const cancelHandler = () => notesDispatch({ type: 'TOGGLE_NEW_NOTE' });
+
+  const cancelHandler = () => notesDispatch({ type: 'TOGGLE_SET_NOTE' });
   const submitHandler = (e) => {
     e.preventDefault();
     if (!textAreaRef.current.value.trim()) {
@@ -19,21 +23,31 @@ const NewNote = () => {
       return;
     }
     notesDispatch({
-      type: 'ADD_NEW_NOTE',
+      type: 'SET_NOTE',
       payload: {
         quote: textAreaRef.current.value,
         author: inputRef.current.value,
+        id: notesState.idSelected,
       },
     });
   };
 
+  let containerStyles = classes.container;
+  if (noteSelected) {
+    containerStyles = `${classes.container} ${classes[noteSelected.color]}`;
+  }
+
   return (
     <Modal>
-      <div className={classes.container}>
+      <div className={containerStyles}>
         <h2>Quote</h2>
         <form onSubmit={submitHandler}>
           {error && <div className={classes.message}>{error}</div>}
-          <textarea ref={textAreaRef} placeholder="Type your phrease here..." />
+          <textarea
+            defaultValue={noteSelected ? noteSelected.quote : ''}
+            ref={textAreaRef}
+            placeholder="Type your phrease here..."
+          />
           <div className={classes.author}>
             <label htmlFor="author">Author: </label>
             <input
@@ -41,6 +55,7 @@ const NewNote = () => {
               type="text"
               ref={inputRef}
               placeholder="Leave it blank @anonymous"
+              defaultValue={noteSelected ? noteSelected.author : ''}
             />
           </div>
           <div className={classes.btns}>

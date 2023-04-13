@@ -24,6 +24,7 @@
 }
 
 .note {
+  cursor: pointer;
   background-color: #fff;
   width: 21rem;
   height: 20rem;
@@ -36,19 +37,19 @@
 }
 
 .yellow {
-  background-color: #fcffcc;
+  background-color: var(--yellow-note);
 }
 
 .blue {
-  background-color: #ccf7ff;
+  background-color: var(--blue-note);
 }
 
 .green {
-  background-color: #b7ffb7;
+  background-color: var(--green-note);
 }
 
 .pink {
-  background-color: rgb(255, 168, 168);
+  background-color: var(--pink-note);
 }
 
 .note p {
