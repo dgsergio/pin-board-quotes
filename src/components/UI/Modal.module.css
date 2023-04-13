@@ -4,7 +4,6 @@
   height: 100%;
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.6);
-  animation: fadeIn 400ms linear;
 }
 .overlay {
   position: fixed;
@@ -15,8 +14,8 @@
   left: calc(50% - 25rem);
   top: 10vh;
   border-radius: 0.5rem;
-  animation: popIn 300ms linear;
   box-shadow: 0.8rem 0.8rem 0.8rem 0 rgba(0, 0, 0, 0.35);
+  animation: popIn 200ms linear;
 }
 
 @keyframes popIn {
@@ -28,14 +27,5 @@
     }
     100% {
         transform: scale(100%);
-    }
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
     }
 }

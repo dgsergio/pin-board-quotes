@@ -6,22 +6,6 @@ import addNote from '../assets/newNote.svg';
 import NewNote from '../components/NewNote';
 
 const HomePage = () => {
-  //Reasign when note is creted
-  // const random = () => {
-  //   switch (Math.floor(Math.random() * 5)) {
-  //     case 1:
-  //       return 'yellow';
-  //     case 2:
-  //       return 'blue';
-  //     case 3:
-  //       return 'green';
-  //     case 4:
-  //       return 'pink';
-  //     default:
-  //       return '';
-  //   }
-  // };
-
   const { notesState, notesDispatch } = useContext(NoteContext);
   const { notes, showNewNote } = notesState;
 
@@ -37,7 +21,7 @@ const HomePage = () => {
           <Note key={e.id} note={e} />
         ))}
       </div>
-      <button onClick={addBtnHandler} className={classes.addBtn}>
+      <button onClick={addBtnHandler} className={notes.length!==0?classes.addBtn:classes['no-note-add']}>
         <img src={addNote} alt="Add a new note to the board" />
       </button>
     </>
