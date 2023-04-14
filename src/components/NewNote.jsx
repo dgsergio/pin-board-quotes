@@ -4,7 +4,7 @@ import classes from './NewNote.module.css';
 import NoteContext from '../store/noteContext';
 
 const NewNote = () => {
-  const { notesDispatch, notesState } = useContext(NoteContext);
+  const { notesDispatch, notesState, currentUser } = useContext(NoteContext);
   const noteSelected = notesState.notes.find(
     (e) => e.id === notesState.idSelected
   );
@@ -38,7 +38,6 @@ const NewNote = () => {
   useEffect(() => {
     if (noteSelected) setColorSelected(noteSelected.color);
   }, []);
-
   return (
     <Modal>
       <div
@@ -61,7 +60,7 @@ const NewNote = () => {
                 type="text"
                 ref={inputRef}
                 placeholder="Leave it blank @anonymous"
-                defaultValue={noteSelected ? noteSelected.author : ''}
+                defaultValue={noteSelected ? noteSelected.author : currentUser.email.split('@')[0]}
               />
             </div>
             <div className={classes['squares-color']}>

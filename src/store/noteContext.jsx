@@ -1,6 +1,12 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer, useState } from 'react';
 import { DUMMY_NOTES } from '../DUMMY_NOTES';
-import { randomNro } from '../functions';
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth';
+import { auth } from '../firebase';
 
 const NoteContext = createContext();
 
@@ -68,9 +74,27 @@ export const NoteContextProvider = ({ children }) => {
     notesReducer,
     initialNotesState
   );
+  const [currentUser, setCurrentUser] = useState();
+
+  const signup = (email, password) =>
+    createUserWithEmailAndPassword(auth, email, password);
+
+  const login = (email, password) =>
+    signInWithEmailAndPassword(auth, email, password);
+
+  const logout = () => signOut(auth);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return unsubscribe;
+  }, []);
 
   return (
-    <NoteContext.Provider value={{ notesState, notesDispatch }}>
+    <NoteContext.Provider
+      value={{ notesState, notesDispatch, signup, login, logout, currentUser }}
+    >
       {children}
     </NoteContext.Provider>
   );

@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    background-color: #543b2b;
+    color: white;
+    border-bottom: 0.1rem solid #f9dbc9;
+    width: 100%;
+    justify-content: right;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.container ul {
+    margin: 0 2rem;
+    display: flex;
+}
+
+.container li {
+    padding: 1rem 0.2rem;
+    list-style: none;
+}
+
+.container a {
+    color: white;
+    transition: all 200ms ease-out;
+}
+
+.container a:hover, .logout:hover {
+    color: #5bb0ff;
+    text-decoration: underline;
+}
+
+.logout {
+    cursor: pointer;
+}

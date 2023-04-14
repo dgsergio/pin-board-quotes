@@ -4,17 +4,22 @@ import { useContext } from 'react';
 import NoteContext from '../store/noteContext';
 import addNote from '../assets/newNote.svg';
 import NewNote from '../components/NewNote';
+import Nav from '../components/Nav';
 
 const HomePage = () => {
-  const { notesState, notesDispatch } = useContext(NoteContext);
+  const { notesState, notesDispatch, logout } = useContext(NoteContext);
   const { notes, showNewNote } = notesState;
-
+  
   const addBtnHandler = () => {
     notesDispatch({ type: 'TOGGLE_SET_NOTE' });
   };
 
+  const {currentUser} = useContext(NoteContext);
+
+  
   return (
     <>
+    {currentUser && <Nav email={currentUser.email} />}
     <div className={classes.phantom} onClick={addBtnHandler}  />
       {showNewNote && <NewNote />}
       <div className={classes.board}>

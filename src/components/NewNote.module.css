@@ -4,6 +4,7 @@
   border-radius: 0.5rem;
   box-shadow: 0.8rem 0.8rem 0.8rem 0 rgba(0, 0, 0, 0.35);
   background-color: #eee;
+  transition: all 150ms ease-in-out;
 }
 
 .yellow {
@@ -126,9 +127,9 @@
   background-color: rgba(248, 215, 218, 0.69);
   border-top: 0.1rem solid #842029;
   border-bottom: 0.1rem solid #842029;
+  color: #842029;
   font-size: 2rem;
   top: 10rem;
-  color: #842029;
   width: 100%;
   padding: 5rem 0;
   text-align: center;

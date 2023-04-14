@@ -23,3 +23,12 @@ button {
   border: none;
   cursor: pointer;
 }
+
+a {
+  text-decoration: none;
+  color: #0084ff;
+}
+
+a:hover {
+  text-decoration: underline;
+}

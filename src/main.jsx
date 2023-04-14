@@ -4,11 +4,28 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './global.css';
 import HomePage from './pages/Home';
 import { NoteContextProvider } from './store/noteContext';
+import { Signup } from './pages/Signup';
+import { Login } from './pages/Login';
+import Private from './pages/Private';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: <Private />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      }
+    ]
+  },
+  {
+    path: '/signup',
+    element: <Signup />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
   },
 ]);
 
