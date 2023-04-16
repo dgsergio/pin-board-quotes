@@ -14,6 +14,7 @@ const NoteContext = createContext();
 const initialNotesState = {
   notes: [],
   showNewNote: false,
+  idSelected: '',
 };
 
 const notesReducer = (state, action) => {
@@ -22,6 +23,7 @@ const notesReducer = (state, action) => {
       return {
         ...state,
         showNewNote: !state.showNewNote,
+        idSelected: action.payload
       };
 
     case 'GET_DB_NOTES':
@@ -29,6 +31,7 @@ const notesReducer = (state, action) => {
 
     case 'ADD_NOTE':
       return {
+        ...state,
         notes: [action.payload, ...state.notes],
         showNewNote: false,
       };
@@ -37,7 +40,7 @@ const notesReducer = (state, action) => {
       const newNotes = state.notes.map((e) =>
         e.id === action.payload.id ? action.payload : e
       );
-      return { notes: newNotes, showNewNote: false };
+      return { ...state, notes: newNotes, showNewNote: false };
 
     case 'DELETE_NOTE':
       const filteredNotes = state.notes.filter((e) => e.id !== action.payload);

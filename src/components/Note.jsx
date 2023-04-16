@@ -8,7 +8,7 @@ import useFetch from '../hooks/useFetch';
 const Note = ({ note }) => {
   const { notesDispatch } = useContext(NoteContext);
   const { sendReq } = useFetch();
-  const editHandler = () => notesDispatch({ type: 'TOGGLE_SET_NOTE' });
+  const editHandler = () => notesDispatch({ type: 'TOGGLE_SET_NOTE', payload: note.id });
 
   const deleteHandler = async () => {
     await sendReq({
