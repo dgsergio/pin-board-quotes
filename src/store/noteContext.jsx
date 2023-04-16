@@ -1,5 +1,4 @@
 import { createContext, useEffect, useReducer, useState } from 'react';
-import { DUMMY_NOTES } from '../DUMMY_NOTES';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -8,12 +7,12 @@ import {
 } from 'firebase/auth';
 import { auth } from '../firebase';
 import useFetch from '../hooks/useFetch';
+import { transformData } from '../functions';
 
 const NoteContext = createContext();
 
 const initialNotesState = {
   notes: [],
-  idSelected: '',
   showNewNote: false,
 };
 
@@ -22,51 +21,27 @@ const notesReducer = (state, action) => {
     case 'TOGGLE_SET_NOTE':
       return {
         ...state,
-        idSelected: action.payload,
         showNewNote: !state.showNewNote,
       };
 
-    case 'SET_NOTE':
-      if (action.payload.id) {
-        const newNotes = state.notes.map((e) =>
-          e.id === action.payload.id
-            ? {
-                ...e,
-                quote: action.payload.quote,
-                color: action.payload.color,
-                author: action.payload.author.trim()
-                  ? action.payload.author
-                  : 'anonymous',
-              }
-            : e
-        );
-        return { notes: newNotes, showNewNote: false };
-      }
+    case 'GET_DB_NOTES':
+      return { ...state, notes: action.payload };
 
+    case 'ADD_NOTE':
       return {
-        notes: [
-          {
-            id: new Date(),
-            quote: action.payload.quote,
-            author: action.payload.author.trim()
-              ? action.payload.author
-              : 'anonymous',
-            color: action.payload.color,
-          },
-          ...state.notes,
-        ],
+        notes: [action.payload, ...state.notes],
         showNewNote: false,
       };
 
     case 'EDIT_NOTE':
-      return { ...state, showNewNote: !state.showNewNote };
+      const newNotes = state.notes.map((e) =>
+        e.id === action.payload.id ? action.payload : e
+      );
+      return { notes: newNotes, showNewNote: false };
 
     case 'DELETE_NOTE':
       const filteredNotes = state.notes.filter((e) => e.id !== action.payload);
       return { ...state, notes: filteredNotes };
-
-    case 'GET_DB_NOTES':
-      return {...state, notes: action.payload};
 
     default:
       return state;
@@ -99,12 +74,13 @@ export const NoteContextProvider = ({ children }) => {
 
   useEffect(() => {
     const getNotes = async () => {
-      const notes = await sendReq({
-        url: 'https://pin-board-quotes-default-rtdb.europe-west1.firebasedatabase.app/notes.json/',
+      const data = await sendReq({
+        url: import.meta.env.VITE_FIREBASE_URL + 'notes.json',
       });
-      notesDispatch({type: 'GET_DB_NOTES', payload: notes})
+      const notes = transformData(data).reverse();
+      notesDispatch({ type: 'GET_DB_NOTES', payload: notes });
     };
-    getNotes()
+    getNotes();
   }, []);
 
   return (

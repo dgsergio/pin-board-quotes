@@ -1,16 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const useFetch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
-  const transformData = (data) => {
-    let transformedData = [];
-    for (const key in data) {
-      transformedData.push({ id: key, ...data[key] });
-    }
-    return transformedData;
-  };
 
   const sendReq = async (req) => {
     setLoading(true);
@@ -23,7 +15,7 @@ const useFetch = () => {
       });
       if (!response.ok) throw new Error('Could not fetch');
       const data = await response.json();
-      return transformData(data);
+      return data;
     } catch (err) {
       setError(err);
     }
@@ -33,6 +25,5 @@ const useFetch = () => {
 };
 
 export default useFetch;
-
 
 // El metodo POST de firebase pasado a json devuelve un objeto, con la propiedad name?

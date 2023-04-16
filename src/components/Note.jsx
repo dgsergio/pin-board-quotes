@@ -3,15 +3,20 @@ import pin from '../assets/pin.svg';
 import { randomNro } from '../functions';
 import { useContext } from 'react';
 import NoteContext from '../store/noteContext';
+import useFetch from '../hooks/useFetch';
 
 const Note = ({ note }) => {
   const { notesDispatch } = useContext(NoteContext);
+  const { sendReq } = useFetch();
+  const editHandler = () => notesDispatch({ type: 'TOGGLE_SET_NOTE' });
 
-  const editHandler = () =>
-    notesDispatch({ type: 'TOGGLE_SET_NOTE', payload: note.id });
-
-  const deleteHandler = () =>
+  const deleteHandler = async () => {
+    await sendReq({
+      url: import.meta.env.VITE_FIREBASE_URL + 'notes/' + note.id + '.json',
+      method: 'DELETE',
+    });
     notesDispatch({ type: 'DELETE_NOTE', payload: note.id });
+  };
 
   return (
     <div className={classes.wrapper}>

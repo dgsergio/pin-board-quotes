@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import Modal from './UI/Modal';
 import classes from './NewNote.module.css';
 import NoteContext from '../store/noteContext';
+import useFetch from '../hooks/useFetch';
 
 const NewNote = () => {
   const { notesDispatch, notesState, currentUser } = useContext(NoteContext);
@@ -12,9 +13,11 @@ const NewNote = () => {
   const [colorSelected, setColorSelected] = useState('white');
   const textAreaRef = useRef();
   const inputRef = useRef();
+  const { sendReq } = useFetch();
 
   const cancelHandler = () => notesDispatch({ type: 'TOGGLE_SET_NOTE' });
-  const submitHandler = (e) => {
+
+  const submitHandler = async (e) => {
     e.preventDefault();
     if (!textAreaRef.current.value.trim()) {
       setError('The quote field must not be empty');
@@ -24,14 +27,46 @@ const NewNote = () => {
       return;
     }
 
+    const noteCreated = {
+      quote: textAreaRef.current.value,
+      author: inputRef.current.value.trim()
+        ? inputRef.current.value
+        : 'anonymous',
+      color: colorSelected === 'white' ? '' : colorSelected,
+    };
+
+    if (noteSelected) {
+      sendReq({
+        url:
+          import.meta.env.VITE_FIREBASE_URL +
+          'notes/' +
+          noteSelected.id +
+          '.json',
+        method: 'PATCH',
+        body: noteCreated,
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      notesDispatch({
+        type: 'EDIT_NOTE',
+        payload: {
+          ...noteCreated,
+          id: notesState.idSelected,
+        },
+      });
+      return;
+    }
+
+    const data = await sendReq({
+      url: import.meta.env.VITE_FIREBASE_URL + 'notes.json',
+      method: 'POST',
+      body: noteCreated,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
     notesDispatch({
-      type: 'SET_NOTE',
-      payload: {
-        quote: textAreaRef.current.value,
-        author: inputRef.current.value,
-        color: colorSelected === 'white' ? '' : colorSelected,
-        id: notesState.idSelected,
-      },
+      type: 'ADD_NOTE',
+      payload: { ...noteCreated, id: data.name },
     });
   };
 
