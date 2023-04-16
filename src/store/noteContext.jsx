@@ -55,7 +55,7 @@ export const NoteContextProvider = ({ children }) => {
   );
 
   const [currentUser, setCurrentUser] = useState();
-  const { sendReq } = useFetch();
+  const { sendReq, error } = useFetch();
 
   const signup = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
@@ -78,11 +78,14 @@ export const NoteContextProvider = ({ children }) => {
         url: import.meta.env.VITE_FIREBASE_URL + 'notes.json',
       });
       const notes = transformData(data).reverse();
+      
       notesDispatch({ type: 'GET_DB_NOTES', payload: notes });
     };
     getNotes();
   }, []);
-
+  
+  // if (error) throw new Error(error);
+  
   return (
     <NoteContext.Provider
       value={{ notesState, notesDispatch, signup, login, logout, currentUser }}

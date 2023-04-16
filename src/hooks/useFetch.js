@@ -6,14 +6,16 @@ const useFetch = () => {
 
   const sendReq = async (req) => {
     setLoading(true);
-    setError('');
+    setError('')
     try {
       const response = await fetch(req.url, {
         method: req.method || 'GET',
         body: req.body ? JSON.stringify(req.body) : null,
         headers: req.headers || {},
       });
-      if (!response.ok) throw new Error('Could not fetch');
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
       const data = await response.json();
       return data;
     } catch (err) {

@@ -7,11 +7,13 @@ import { NoteContextProvider } from './store/noteContext';
 import { Signup } from './pages/Signup';
 import { Login } from './pages/Login';
 import Private from './pages/Private';
+import ErrorPage from './pages/Error';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Private />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
