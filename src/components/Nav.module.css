@@ -1,13 +1,13 @@
 .container {
     display: flex;
     background-color: #543b2b;
-    color: white;
-    border-bottom: 0.1rem solid #f9dbc9;
+    color: #f9dbc9;
+    border-bottom: 0.2rem solid #f9dbc9;
     width: 100%;
     justify-content: right;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.4rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.3rem;
 }
 
 .container ul {

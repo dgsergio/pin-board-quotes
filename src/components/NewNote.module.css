@@ -124,15 +124,16 @@
 
 .message {
   position: absolute;
-  background-color: rgba(248, 215, 218, 0.69);
-  border-top: 0.1rem solid #842029;
-  border-bottom: 0.1rem solid #842029;
+  background-color: #f8d7da;
+  border: 0.1rem solid #842029;
+  border-radius: 0.5rem;
   color: #842029;
   font-size: 2rem;
-  top: 10rem;
-  width: 100%;
-  padding: 5rem 0;
+  top: 12rem;
+  width: 95%;
+  padding: 3rem 0;
   text-align: center;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.15);
   animation: zoomIn 150ms ease-out;
 }
 

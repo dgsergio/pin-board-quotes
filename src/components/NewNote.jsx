@@ -17,7 +17,7 @@ const NewNote = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (!textAreaRef.current.value.trim()) {
-      setError('Please enter a valid note in the quote field.');
+      setError('The quote field must not be empty');
       setTimeout(() => {
         setError('');
       }, 3000);
@@ -38,11 +38,14 @@ const NewNote = () => {
   useEffect(() => {
     if (noteSelected) setColorSelected(noteSelected.color);
   }, []);
+
   return (
     <Modal>
       <div
         className={classes.container}
-        style={{ background: `var(--${colorSelected?colorSelected:'white'}-note` }}
+        style={{
+          background: `var(--${colorSelected ? colorSelected : 'white'}-note`,
+        }}
       >
         <h2>Quote</h2>
         <form onSubmit={submitHandler}>
@@ -60,7 +63,12 @@ const NewNote = () => {
                 type="text"
                 ref={inputRef}
                 placeholder="Leave it blank @anonymous"
-                defaultValue={noteSelected ? noteSelected.author : currentUser.email.split('@')[0]}
+                defaultValue={
+                  noteSelected
+                    ? noteSelected.author
+                    : currentUser.email.split('@')[0][0].toUpperCase() +
+                      currentUser.email.split('@')[0].slice(1)
+                }
               />
             </div>
             <div className={classes['squares-color']}>

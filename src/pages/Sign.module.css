@@ -76,13 +76,31 @@
     transition: all 200ms ease-out;
 }
 
-.btn img {
+.pin-img {
     width: 2.4rem;
     position: absolute;
     top: 0.5rem;
     right: 3rem;
     transform: scaleX(-100%);
     z-index: 20;
+    animation: pin 150ms ease-in;
+}
+
+.display-none { 
+  display: none;
+}
+
+@keyframes pin {
+  from {
+    top: -1.8rem;
+    right: 1.7rem;
+    opacity: 0.5;
+  }
+  to {
+    top: 0.5rem;
+    right: 3rem;
+    opacity: 1;
+  }
 }
 
 .danger {

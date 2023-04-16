@@ -7,11 +7,12 @@ import {
   signOut,
 } from 'firebase/auth';
 import { auth } from '../firebase';
+import useFetch from '../hooks/useFetch';
 
 const NoteContext = createContext();
 
 const initialNotesState = {
-  notes: [...DUMMY_NOTES],
+  notes: [],
   idSelected: '',
   showNewNote: false,
 };
@@ -64,6 +65,9 @@ const notesReducer = (state, action) => {
       const filteredNotes = state.notes.filter((e) => e.id !== action.payload);
       return { ...state, notes: filteredNotes };
 
+    case 'GET_DB_NOTES':
+      return {...state, notes: action.payload};
+
     default:
       return state;
   }
@@ -74,7 +78,9 @@ export const NoteContextProvider = ({ children }) => {
     notesReducer,
     initialNotesState
   );
+
   const [currentUser, setCurrentUser] = useState();
+  const { sendReq } = useFetch();
 
   const signup = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
@@ -89,6 +95,16 @@ export const NoteContextProvider = ({ children }) => {
       setCurrentUser(user);
     });
     return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    const getNotes = async () => {
+      const notes = await sendReq({
+        url: 'https://pin-board-quotes-default-rtdb.europe-west1.firebasedatabase.app/notes.json/',
+      });
+      notesDispatch({type: 'GET_DB_NOTES', payload: notes})
+    };
+    getNotes()
   }, []);
 
   return (

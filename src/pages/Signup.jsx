@@ -7,6 +7,7 @@ import NoteContext from '../store/noteContext';
 export const Signup = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPin, setShowPin] = useState(false);
   const emailRef = useRef();
   const passRef = useRef();
   const passRepRef = useRef();
@@ -22,11 +23,14 @@ export const Signup = () => {
       return setError('Passwords do not match');
     }
     try {
-      const response = await signup(emailRef.current.value, passRef.current.value);
+      const response = await signup(
+        emailRef.current.value,
+        passRef.current.value
+      );
       navigate('/');
     } catch (error) {
       const errorCode = error.code;
-      setError('Fail to sign up: '+errorCode)
+      setError('Fail to sign up: ' + errorCode);
     }
     setLoading(false);
   };
@@ -50,9 +54,21 @@ export const Signup = () => {
               ref={passRepRef}
               required
             />
-            <div className={classes.btn} >
-              <img src={pin} alt="a cork board pin" />
-              <button type="submit" disabled={loading} >Sign Up</button>
+            <div
+              onMouseOver={() => setShowPin(true)}
+              onMouseLeave={() => setShowPin(false)}
+              className={classes.btn}
+            >
+              <img
+                className={`${classes['pin-img']} ${
+                  !showPin && classes['display-none']
+                }`}
+                src={pin}
+                alt="a cork board pin"
+              />
+              <button type="submit" disabled={loading}>
+                Sign Up
+              </button>
             </div>
           </form>
           <div className={classes.footer}>
