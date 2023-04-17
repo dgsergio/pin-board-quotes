@@ -1,20 +1,17 @@
-import React, { useContext } from 'react'
-import Nav from '../components/Nav'
-import NoteContext from '../store/noteContext';
+import { useNavigate } from 'react-router-dom';
 import classes from './Error.module.css';
 
 const ErrorPage = () => {
-    const { currentUser } = useContext(NoteContext);
-
+  const navigate = useNavigate();
   return (
-    <>
-        <Nav email={currentUser.email} />
-        <main className={classes.main}>
-        <h3>Something went wrong</h3>
-        <h4>We'll be back soon!</h4>
+    <div className={classes.container}>
+      <main>
+        <h3>OOPS</h3>
+        <h4>The page you are looking for is not here</h4>
+        <button onClick={()=>navigate('/')}>&#x21D0; Go back</button>
       </main>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default ErrorPage
+export default ErrorPage;

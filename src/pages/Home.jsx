@@ -1,6 +1,6 @@
 import classes from './Home.module.css';
 import Note from '../components/Note';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import NoteContext from '../store/noteContext';
 import addNote from '../assets/newNote.svg';
 import NewNote from '../components/NewNote';
