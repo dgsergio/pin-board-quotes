@@ -6,14 +6,14 @@ https://pin-board-quotes.web.app
 
 
 ### React, React Router
-This application was created with [RectJS](https://react.dev/). ReactRouter dependency was used to manage routing and Firebase dependency for the backend user authentication.
+This application was created with [ReactJS](https://react.dev/). ReactRouter dependency was used to manage routing and Firebase dependency for the backend user authentication.
 
 ### Highlights
 To use the corkboard the user must create an account and logged in.
 
-Post-it notes use database. The Data is fetched with a custom hook either to GET, POST, PUT or DELETE an item in the database.
+Post-it notes use database. The Data is fetched with a custom hook either to GET, POST, PUT or DELETE an item.
 
-Notes can be created, read, updated and deleted (CRUD) with a intuitive and visual system.
+Notes can be created, read, updated and deleted (CRUD) with a intuitive and visual experience.
 
 The CSS style of the website was entirely coded by hand using CSS module. Just like JSX, no external code was copied.
 
