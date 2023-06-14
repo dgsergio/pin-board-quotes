@@ -1,36 +1,29 @@
 # Pin Board Quotes
-This is a web application that allow the user to create notes and post quotes. The notes are just like post-it cork board. 
+This is a web application that allows users to create notes and share quotes. The notes function similar to a post-it cork board.
 
 You can visit the website at the following link: 
 https://pin-board-quotes.web.app
 
 
 ### React, React Router
-This application was created with [ReactJS](https://react.dev/). ReactRouter dependency was used to manage routing and Firebase dependency for the backend user authentication.
+This application was built using [ReactJS](https://react.dev/). React Router was used as a dependency to manage routing, and Firebase was utilized for backend user authentication.
 
 ### Highlights
-To use the corkboard the user must create an account and logged in.
+To use the corkboard, users must create an account and log in.
 
-Post-it notes use database. The Data is fetched with a custom hook either to GET, POST, PUT or DELETE an item.
+Post-it notes utilize a database, and data is fetched using a custom hook for operations such as GET, POST, PUT, or DELETE.
 
-Notes can be created, read, updated and deleted (CRUD) with a intuitive and visual experience.
+The application provides an intuitive and visually pleasing experience for creating, reading, updating, and deleting (CRUD) notes.
 
-The CSS style of the website was entirely coded by hand using CSS module. Just like JSX, no external code was copied.
+The CSS styles of the website were entirely hand-coded using CSS modules. Similar to JSX, no external code was copied.
 
-The application is completely responsive.
+The application is fully responsive.
 
-## Getting Started
-This project was bootstrapped with [Vite](https://vitejs.dev/).
-
-First, install the dependecys:
-
-```bash
-npm install
-```
- Then run the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+## Technologies used
+- Vite
+- ReactJS
+- Custom Hook
+- React Router
+- Firebase Authentification
+- Firabase Realtime Database
+- Modular CSS
